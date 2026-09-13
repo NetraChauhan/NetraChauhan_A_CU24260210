@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: const Text('Business Card'), centerTitle: true),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
-          child: Center(
+          child: Align(
+            alignment: Alignment.topCenter,
             child: Card(
               elevation: 3,
               child: Container(
