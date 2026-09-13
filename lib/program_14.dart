@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,30 +9,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Registration')),
-        body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+        appBar: AppBar(title: const Text('Registration Screen'), centerTitle: true),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(28, 20, 28, 28),
+          child: Center(
             child: SizedBox(
-              width: 380,
+              width: 390,
               child: Column(
                 children: [
-                  const Text('Create Account', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 25),
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Name', prefixIcon: Icon(Icons.person), border: OutlineInputBorder()),
-                  ),
+                  const TextField(decoration: InputDecoration(labelText: 'Name', border: OutlineInputBorder(), prefixIcon: Icon(Icons.person))),
+                  const SizedBox(height: 12),
+                  const TextField(decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder(), prefixIcon: Icon(Icons.email))),
+                  const SizedBox(height: 12),
+                  const TextField(obscureText: true, decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder(), prefixIcon: Icon(Icons.lock))),
                   const SizedBox(height: 16),
-                  const TextField(
-                    decoration: InputDecoration(labelText: 'Email', prefixIcon: Icon(Icons.email), border: OutlineInputBorder()),
-                  ),
-                  const SizedBox(height: 16),
-                  const TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(labelText: 'Password', prefixIcon: Icon(Icons.lock), border: OutlineInputBorder()),
-                  ),
-                  const SizedBox(height: 22),
                   SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child: const Text('Register'))),
                 ],
               ),

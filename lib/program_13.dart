@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,35 +9,33 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
       home: Scaffold(
-        body: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: SizedBox(
-                width: 360,
-                child: Column(
-                  children: [
-                    Image.network(
-                      'https://picsum.photos/180/120?random=13',
-                      height: 110,
+        appBar: AppBar(title: const Text('Login Screen'), centerTitle: true),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(28, 16, 28, 28),
+          child: Center(
+            child: SizedBox(
+              width: 380,
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.network(
+                      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80',
+                      width: 180,
+                      height: 105,
+                      fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) => const Icon(Icons.login, size: 80),
                     ),
-                    const SizedBox(height: 20),
-                    const Text('Login', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 25),
-                    const TextField(
-                      decoration: InputDecoration(labelText: 'Email', prefixIcon: Icon(Icons.email), border: OutlineInputBorder()),
-                    ),
-                    const SizedBox(height: 16),
-                    const TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(labelText: 'Password', prefixIcon: Icon(Icons.lock), border: OutlineInputBorder()),
-                    ),
-                    const SizedBox(height: 22),
-                    SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child: const Text('Login'))),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 16),
+                  const TextField(decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder(), prefixIcon: Icon(Icons.email))),
+                  const SizedBox(height: 12),
+                  const TextField(obscureText: true, decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder(), prefixIcon: Icon(Icons.lock))),
+                  const SizedBox(height: 16),
+                  SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child: const Text('Login'))),
+                ],
               ),
             ),
           ),

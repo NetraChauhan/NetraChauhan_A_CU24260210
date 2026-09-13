@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,38 +9,49 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.orange),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Products')),
-        body: ListView(
-          padding: const EdgeInsets.all(16),
-          children: const [
-            _Product(name: 'Laptop', price: '₹55,000', icon: Icons.laptop),
-            _Product(name: 'Headphones', price: '₹2,000', icon: Icons.headphones),
-            _Product(name: 'Smart Watch', price: '₹3,500', icon: Icons.watch),
-          ],
+        appBar: AppBar(title: const Text('Products'), centerTitle: true),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(20, 18, 20, 24),
+          child: Wrap(
+            spacing: 14,
+            runSpacing: 14,
+            alignment: WrapAlignment.center,
+            children: const [
+              _ProductCard(name: 'Headphones', price: '₹1,999', icon: Icons.headphones),
+              _ProductCard(name: 'Smart Watch', price: '₹2,499', icon: Icons.watch),
+              _ProductCard(name: 'Backpack', price: '₹1,299', icon: Icons.backpack),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _Product extends StatelessWidget {
+class _ProductCard extends StatelessWidget {
   final String name;
   final String price;
   final IconData icon;
-  const _Product({required this.name, required this.price, required this.icon});
+  const _ProductCard({required this.name, required this.price, required this.icon});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 14),
-      child: Card(
-        elevation: 3,
-        child: ListTile(
-          leading: Icon(icon, size: 45),
-          title: Text(name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          subtitle: Text(price),
-          trailing: const Icon(Icons.shopping_cart),
+    return Card(
+      elevation: 2,
+      child: Container(
+        width: 180,
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 48, color: Colors.orange),
+            const SizedBox(height: 10),
+            Text(name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 6),
+            Text(price),
+          ],
         ),
       ),
     );

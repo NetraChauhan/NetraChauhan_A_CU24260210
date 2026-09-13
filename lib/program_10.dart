@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,11 +9,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Buttons')),
-        body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        appBar: AppBar(title: const Text('Three Buttons'), centerTitle: true),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
+          child: Wrap(
+            spacing: 14,
+            runSpacing: 12,
+            alignment: WrapAlignment.center,
             children: [
               ElevatedButton(onPressed: () {}, child: const Text('Submit')),
               OutlinedButton(onPressed: () {}, child: const Text('Reset')),

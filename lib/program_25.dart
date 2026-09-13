@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,41 +9,79 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.deepPurple),
       home: Scaffold(
-        appBar: AppBar(title: const Text('My Profile')),
+        appBar: AppBar(title: const Text('Personal Profile'), centerTitle: true),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              const CircleAvatar(radius: 55, child: Icon(Icons.person, size: 65)),
-              const SizedBox(height: 14),
-              const Text('Netra Chauhan', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-              const Text('BCA Student | UI/UX Enthusiast', style: TextStyle(fontSize: 17)),
-              const SizedBox(height: 22),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(color: Colors.blue.shade50, borderRadius: BorderRadius.circular(16)),
-                child: const Column(
-                  children: [
-                    Row(children: [Icon(Icons.school), SizedBox(width: 12), Text('COER University')]),
-                    SizedBox(height: 12),
-                    Row(children: [Icon(Icons.email), SizedBox(width: 12), Text('netra@example.com')]),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          padding: const EdgeInsets.fromLTRB(22, 16, 22, 24),
+          child: Center(
+            child: SizedBox(
+              width: 430,
+              child: Column(
                 children: [
-                  Card(child: Padding(padding: EdgeInsets.all(16), child: Column(children: [Icon(Icons.code), Text('Coding')]))),
-                  Card(child: Padding(padding: EdgeInsets.all(16), child: Column(children: [Icon(Icons.design_services), Text('Design')]))),
-                  Card(child: Padding(padding: EdgeInsets.all(16), child: Column(children: [Icon(Icons.travel_explore), Text('Travel')]))),
+                  Container(
+                    padding: const EdgeInsets.all(18),
+                    decoration: BoxDecoration(color: Colors.deepPurple.shade50, borderRadius: BorderRadius.circular(18)),
+                    child: Row(
+                      children: [
+                        ClipOval(
+                          child: Image.network(
+                            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80',
+                            width: 88,
+                            height: 88,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) => const Icon(Icons.person, size: 88),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Netra Chauhan', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                              SizedBox(height: 5),
+                              Row(children: [Icon(Icons.school, size: 19), SizedBox(width: 6), Text('BCA Student')]),
+                              SizedBox(height: 4),
+                              Row(children: [Icon(Icons.location_on, size: 19), SizedBox(width: 6), Text('Roorkee, Uttarakhand')]),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  const Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('About Me', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          SizedBox(height: 8),
+                          Text('I am a BCA student interested in UI/UX design, technology, and creating simple digital experiences.', style: TextStyle(fontSize: 16)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: const [
+                          Column(children: [Icon(Icons.palette), SizedBox(height: 5), Text('Design')]),
+                          Column(children: [Icon(Icons.code), SizedBox(height: 5), Text('Coding')]),
+                          Column(children: [Icon(Icons.eco), SizedBox(height: 5), Text('Gardening')]),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  SizedBox(width: double.infinity, child: ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.mail), label: const Text('Contact Me'))),
                 ],
               ),
-              const SizedBox(height: 22),
-              SizedBox(width: double.infinity, child: ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.contact_mail), label: const Text('Contact Me'))),
-            ],
+            ),
           ),
         ),
       ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,49 +9,70 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.deepOrange),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Food Menu')),
-        body: ListView(
-          padding: const EdgeInsets.all(16),
-          children: const [
-            _Food(name: 'Veg Burger', price: '₹120', icon: Icons.lunch_dining),
-            _Food(name: 'Pizza', price: '₹250', icon: Icons.local_pizza),
-            _Food(name: 'Cold Coffee', price: '₹100', icon: Icons.local_cafe),
-          ],
+        appBar: AppBar(title: const Text('Food Menu'), centerTitle: true),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+          child: Column(
+            children: const [
+              _FoodCard(
+                name: 'Margherita Pizza',
+                price: '₹299',
+                imageUrl: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80',
+              ),
+              SizedBox(height: 12),
+              _FoodCard(
+                name: 'Creamy Pasta',
+                price: '₹249',
+                imageUrl: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80',
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _Food extends StatelessWidget {
+class _FoodCard extends StatelessWidget {
   final String name;
   final String price;
-  final IconData icon;
-  const _Food({required this.name, required this.price, required this.icon});
+  final String imageUrl;
+  const _FoodCard({required this.name, required this.price, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(14),
+      clipBehavior: Clip.antiAlias,
+      child: SizedBox(
+        width: 430,
         child: Row(
           children: [
-            Container(
-              width: 85,
-              height: 85,
-              color: Colors.orange.shade50,
-              child: Icon(icon, size: 52),
+            Image.network(
+              imageUrl,
+              width: 150,
+              height: 118,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => const SizedBox(width: 150, height: 118, child: Icon(Icons.fastfood, size: 60)),
             ),
-            const SizedBox(width: 16),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text(name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)), const SizedBox(height: 6), Text(price)],
+              child: Padding(
+                padding: const EdgeInsets.all(14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(name, style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 5),
+                    Row(children: [const Icon(Icons.star, size: 18, color: Colors.amber), const SizedBox(width: 4), const Text('4.5')]),
+                    const SizedBox(height: 5),
+                    Text(price, style: const TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 7),
+                    ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.add_shopping_cart, size: 18), label: const Text('Add')),
+                  ],
+                ),
               ),
             ),
-            ElevatedButton.icon(onPressed: () {}, icon: const Icon(Icons.add), label: const Text('Add')),
           ],
         ),
       ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,14 +10,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Text('Row Widget')),
-        body: const Center(
+        appBar: AppBar(title: const Text('Row Widget'), centerTitle: true),
+        body: const Padding(
+          padding: EdgeInsets.fromLTRB(24, 26, 24, 24),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('Flutter', style: TextStyle(fontSize: 22)),
-              Text('is', style: TextStyle(fontSize: 22)),
-              Text('Easy', style: TextStyle(fontSize: 22)),
+              Text('Home', style: TextStyle(fontSize: 20)),
+              Text('About', style: TextStyle(fontSize: 20)),
+              Text('Contact', style: TextStyle(fontSize: 20)),
             ],
           ),
         ),

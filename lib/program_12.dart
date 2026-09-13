@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,33 +9,44 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.deepPurple),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Business Card')),
-        body: Center(
-          child: Card(
-            elevation: 6,
-            margin: const EdgeInsets.all(24),
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ClipOval(
-                    child: Image.network(
-                      'https://i.pravatar.cc/150?img=32',
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => const Icon(Icons.person, size: 90),
+        appBar: AppBar(title: const Text('Business Card'), centerTitle: true),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
+          child: Center(
+            child: Card(
+              elevation: 3,
+              child: Container(
+                width: 380,
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    ClipOval(
+                      child: Image.network(
+                        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80',
+                        width: 88,
+                        height: 88,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => const Icon(Icons.person, size: 88),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Text('Netra Chauhan', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 14),
-                  const Row(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.phone), SizedBox(width: 10), Text('+91 98765 43210')]),
-                  const SizedBox(height: 10),
-                  const Row(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.email), SizedBox(width: 10), Text('netra@example.com')]),
-                ],
+                    const SizedBox(width: 18),
+                    const Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Netra Chauhan', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                          SizedBox(height: 10),
+                          Row(children: [Icon(Icons.phone, size: 19), SizedBox(width: 7), Text('+91 98765 43210')]),
+                          SizedBox(height: 7),
+                          Row(children: [Icon(Icons.email, size: 19), SizedBox(width: 7), Expanded(child: Text('netra@example.com'))]),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

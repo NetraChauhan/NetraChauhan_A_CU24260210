@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,28 +9,32 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
       home: Scaffold(
-        appBar: AppBar(title: const Text('College Home')),
-        body: Padding(
-          padding: const EdgeInsets.all(24),
+        appBar: AppBar(title: const Text('College Home Screen'), centerTitle: true),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(24, 18, 24, 24),
           child: Column(
             children: [
-              const CircleAvatar(radius: 45, child: Icon(Icons.school, size: 50)),
-              const SizedBox(height: 16),
-              const Text('COER University', style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 30),
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  children: const [
-                    _Menu(icon: Icons.book, text: 'Courses'),
-                    _Menu(icon: Icons.people, text: 'Faculty'),
-                    _Menu(icon: Icons.event, text: 'Events'),
-                    _Menu(icon: Icons.contact_phone, text: 'Contact'),
-                  ],
-                ),
+              Container(
+                width: 86,
+                height: 86,
+                decoration: const BoxDecoration(color: Colors.indigo, shape: BoxShape.circle),
+                child: const Center(child: Text('CU', style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold))),
+              ),
+              const SizedBox(height: 10),
+              const Text('COER University', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 18),
+              Wrap(
+                spacing: 14,
+                runSpacing: 14,
+                alignment: WrapAlignment.center,
+                children: const [
+                  _MenuCard(icon: Icons.school, label: 'Courses'),
+                  _MenuCard(icon: Icons.apartment, label: 'Departments'),
+                  _MenuCard(icon: Icons.event, label: 'Events'),
+                  _MenuCard(icon: Icons.contact_phone, label: 'Contact'),
+                ],
               ),
             ],
           ),
@@ -42,18 +44,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class _Menu extends StatelessWidget {
+class _MenuCard extends StatelessWidget {
   final IconData icon;
-  final String text;
-  const _Menu({required this.icon, required this.text});
+  final String label;
+  const _MenuCard({required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 3,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(icon, size: 48), const SizedBox(height: 10), Text(text, style: const TextStyle(fontSize: 18))],
+      child: SizedBox(
+        width: 145,
+        height: 90,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Icon(icon, size: 30, color: Colors.indigo), const SizedBox(height: 6), Text(label)],
+        ),
       ),
     );
   }
