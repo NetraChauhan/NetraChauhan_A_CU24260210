@@ -1,0 +1,9 @@
+{
+  "name": "Flutter Lab Sheet 2",
+  "short_name": "Lab Sheet 2",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196F3",
+  "description": "BCA Flutter Lab Sheet 2 programs"
+}
