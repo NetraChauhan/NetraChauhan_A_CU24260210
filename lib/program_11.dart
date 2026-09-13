@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
                   children: [
                     ClipOval(
                       child: Image.network(
-                        'https://api.dicebear.com/9.x/adventurer/png?seed=Netra&backgroundColor=e0e7ff',
+                        'https://api.dicebear.com/9.x/bottts-neutral/png?seed=Student&backgroundColor=e0e7ff',
                         width: 96,
                         height: 96,
                         fit: BoxFit.cover,
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                             height: 96,
                             color: Colors.indigo.shade50,
                             child: const Icon(
-                              Icons.person,
+                              Icons.person_outline,
                               size: 58,
                               color: Colors.indigo,
                             ),
