@@ -26,8 +26,7 @@ class MyApp extends StatelessWidget {
                 child: Image.network(
                   'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
                   width: 330,
-                  height: 190,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
               const SizedBox(height: 12),
