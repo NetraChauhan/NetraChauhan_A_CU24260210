@@ -24,15 +24,10 @@ class MyApp extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: Image.network(
-                  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd4297?auto=format&fit=crop&w=900&q=80',
+                  'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
                   width: 330,
                   height: 190,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => const SizedBox(
-                    width: 330,
-                    height: 190,
-                    child: Center(child: Icon(Icons.image, size: 90)),
-                  ),
                 ),
               ),
               const SizedBox(height: 12),
